@@ -2,14 +2,16 @@ console.log('app.js is running')
 
 const app = {
     title: 'Indecision',
-    subtitle: 'Just another awesome app'
+    subtitle: 'Just another awesome app',
+    options: ['One', 'Two']
 }
 
 
 var template = (
     <div>
         <h1>{app.title}</h1>
-        <p>{app.subtitle}</p>
+        {app.subtitle && <p>{app.subtitle}</p>}
+        {app.options && app.options.length > 0 ? <p>Here are your options</p> : <p>No Options</p>}
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
@@ -42,4 +44,4 @@ var templateTwo = (
 
 var appRoot = document.querySelector('#app')
 
-ReactDOM.render(templateTwo, appRoot)
+ReactDOM.render(template, appRoot)
