@@ -13,12 +13,15 @@ const onFormSubmit = (e) => {
         app.options.push(option)
         e.target.elements.option.value = '';
     }
-    renderListApp();
-    
+    render();
 }
 
+const onRemoveAll = () => {
+    app.options = [];
+    render()
+}
 
-const renderListApp = () => {
+const render = () => {
     var template = (
         <div>
             <h1>{app.title}</h1>
@@ -29,6 +32,7 @@ const renderListApp = () => {
                 <li>Item One</li>
                 <li>Item Two</li>
             </ol>
+            <button onClick={onRemoveAll}>Remove All</button>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name='option'/>
                 <button>Add Option</button>
@@ -74,4 +78,4 @@ const renderCounterApp = () => {
 }
 
 renderCounterApp();
-renderListApp()
+render()

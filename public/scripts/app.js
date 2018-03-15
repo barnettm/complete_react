@@ -15,10 +15,15 @@ var onFormSubmit = function onFormSubmit(e) {
         app.options.push(option);
         e.target.elements.option.value = '';
     }
-    renderListApp();
+    render();
 };
 
-var renderListApp = function renderListApp() {
+var onRemoveAll = function onRemoveAll() {
+    app.options = [];
+    render();
+};
+
+var render = function render() {
     var template = React.createElement(
         'div',
         null,
@@ -59,6 +64,11 @@ var renderListApp = function renderListApp() {
                 null,
                 'Item Two'
             )
+        ),
+        React.createElement(
+            'button',
+            { onClick: onRemoveAll },
+            'Remove All'
         ),
         React.createElement(
             'form',
@@ -121,4 +131,4 @@ var renderCounterApp = function renderCounterApp() {
 };
 
 renderCounterApp();
-renderListApp();
+render();
