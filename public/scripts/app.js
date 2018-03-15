@@ -1,53 +1,134 @@
 'use strict';
 
-// const fullName = "Matt Barnett"
+console.log('app.js is running');
 
-// const getFirstName = (name) => {
-//     return name.split(' ')[0];
-// }
-
-// console.log(getFirstName(fullName))
-
-
-// const getFirstNameTwo = (name) => name.split(' ')[1];
-
-// console.log(getFirstNameTwo(fullName))
-
-// arguments object - no longer bound with arrow functions
-// const add =  (a,b) => {
-//     console.log(arguments)
-//     return a+b;
-// }
-
-// console.log(add(55,1))
-
-var user = {
-    name: 'Matt',
-    cities: ['Ontario', 'Yorba Linda', 'Alta Loma'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        var cityMessages = this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-        // this.cities.forEach((city) => {
-        //     console.log(this.name + ' has lived in ' + city)
-        // })
-    }
+var app = {
+    title: 'Indecision',
+    subtitle: 'Just another awesome app',
+    options: ['One', 'Two']
 };
 
-user.printPlacesLived(user.cities);
-
-var multiplier = {
-    numbers: [1, 2, 3, 4],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+    var option = e.target.elements.option.value;
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
     }
+    render();
 };
 
-console.log(multiplier.multiply());
+var onRemoveAll = function onRemoveAll() {
+    app.options = [];
+    render();
+};
+
+var render = function render() {
+    var template = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            app.title
+        ),
+        app.subtitle && React.createElement(
+            'p',
+            null,
+            app.subtitle
+        ),
+        app.options && app.options.length > 0 ? React.createElement(
+            'p',
+            null,
+            'Here are your options'
+        ) : React.createElement(
+            'p',
+            null,
+            'No Options'
+        ),
+        React.createElement(
+            'p',
+            null,
+            app.options.length
+        ),
+        React.createElement(
+            'ol',
+            null,
+            React.createElement(
+                'li',
+                null,
+                'Item One'
+            ),
+            React.createElement(
+                'li',
+                null,
+                'Item Two'
+            )
+        ),
+        React.createElement(
+            'button',
+            { onClick: onRemoveAll },
+            'Remove All'
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSubmit },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add Option'
+            )
+        )
+    );
+    ReactDOM.render(template, appRoot);
+};
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+};
+
+var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
+};
+
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
+};
+
+var appRoot = document.querySelector('#app');
+
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'Reset'
+        )
+    );
+};
+
+renderCounterApp();
+render();
