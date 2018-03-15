@@ -1,53 +1,85 @@
 'use strict';
 
-// const fullName = "Matt Barnett"
+console.log('app.js is running');
 
-// const getFirstName = (name) => {
-//     return name.split(' ')[0];
-// }
+var app = {
+    title: 'Indecision',
+    subtitle: 'Just another awesome app',
+    options: ['One', 'Two']
+};
 
-// console.log(getFirstName(fullName))
-
-
-// const getFirstNameTwo = (name) => name.split(' ')[1];
-
-// console.log(getFirstNameTwo(fullName))
-
-// arguments object - no longer bound with arrow functions
-// const add =  (a,b) => {
-//     console.log(arguments)
-//     return a+b;
-// }
-
-// console.log(add(55,1))
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        app.subtitle
+    ),
+    app.options && app.options.length > 0 ? React.createElement(
+        'p',
+        null,
+        'Here are your options'
+    ) : React.createElement(
+        'p',
+        null,
+        'No Options'
+    ),
+    React.createElement(
+        'ol',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'Item One'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'Item Two'
+        )
+    )
+);
 
 var user = {
-    name: 'Matt',
-    cities: ['Ontario', 'Yorba Linda', 'Alta Loma'],
-    printPlacesLived: function printPlacesLived() {
-        var _this = this;
-
-        var cityMessages = this.cities.map(function (city) {
-            return _this.name + ' has lived in ' + city;
-        });
-        // this.cities.forEach((city) => {
-        //     console.log(this.name + ' has lived in ' + city)
-        // })
-    }
+    name: "Matt",
+    age: 35,
+    location: 'Orange County'
 };
 
-user.printPlacesLived(user.cities);
-
-var multiplier = {
-    numbers: [1, 2, 3, 4],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return number * _this2.multiplyBy;
-        });
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
     }
-};
+}
 
-console.log(multiplier.multiply());
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        user.name ? user.name : 'Anonymous'
+    ),
+    (user.age && user.age) >= 18 && React.createElement(
+        'p',
+        null,
+        'Age: ',
+        user.age
+    ),
+    getLocation(user.location)
+);
+
+var appRoot = document.querySelector('#app');
+
+ReactDOM.render(template, appRoot);
