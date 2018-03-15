@@ -6,18 +6,38 @@ const app = {
     options: ['One', 'Two']
 }
 
+const onFormSubmit = (e) => {
+    e.preventDefault()
+    const option = e.target.elements.option.value;
+    if(option) {
+        app.options.push(option)
+        e.target.elements.option.value = '';
+    }
+    renderListApp();
+    
+}
 
-var template = (
-    <div>
-        <h1>{app.title}</h1>
-        {app.subtitle && <p>{app.subtitle}</p>}
-        {app.options && app.options.length > 0 ? <p>Here are your options</p> : <p>No Options</p>}
-        <ol>
-            <li>Item One</li>
-            <li>Item Two</li>
-        </ol>
-    </div>
-);
+
+const renderListApp = () => {
+    var template = (
+        <div>
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            {app.options && app.options.length > 0 ? <p>Here are your options</p> : <p>No Options</p>}
+            <p>{app.options.length}</p>
+            <ol>
+                <li>Item One</li>
+                <li>Item Two</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name='option'/>
+                <button>Add Option</button>
+            </form>
+        </div>
+    );
+    ReactDOM.render(template, appRoot);
+}
+
 
 let count = 0;
 const addOne = () => {
@@ -25,13 +45,16 @@ const addOne = () => {
     renderCounterApp()
 }
 
+
+
 const minusOne = () => {
-    console.log('minus')
-    
+    count--
+    renderCounterApp()
 }
 
 const reset = () => {
-    console.log('reset')
+    count = 0;
+    renderCounterApp()
 }
 
 
@@ -47,7 +70,8 @@ const renderCounterApp = () => {
             <button onClick={reset}>Reset</button>
         </div>
     );
-    ReactDOM.render(templateTwo, appRoot);
+    
 }
 
 renderCounterApp();
+renderListApp()
