@@ -6,42 +6,76 @@ const app = {
     options: ['One', 'Two']
 }
 
-
-var template = (
-    <div>
-        <h1>{app.title}</h1>
-        {app.subtitle && <p>{app.subtitle}</p>}
-        {app.options && app.options.length > 0 ? <p>Here are your options</p> : <p>No Options</p>}
-        <ol>
-            <li>Item One</li>
-            <li>Item Two</li>
-        </ol>
-    </div>
-);
-
-var user = {
-    name: "Matt",
-    age: 35,
-    location: 'Orange County'
-}
-
-function getLocation(location) {
-    if(location) {
-        return <p>Location: {location}</p>
+const onFormSubmit = (e) => {
+    e.preventDefault()
+    const option = e.target.elements.option.value;
+    if(option) {
+        app.options.push(option)
+        e.target.elements.option.value = '';
     }
+    render();
 }
 
-var templateTwo = (
-    <div>
-        <h1>{user.name ? user.name : 'Anonymous'}</h1>
-       {(user.age && user.age) >= 18 && <p>Age: {user.age}</p> } 
-        {getLocation(user.location)}
-    </div>
-);
+const onRemoveAll = () => {
+    app.options = [];
+    render()
+}
+
+const render = () => {
+    var template = (
+        <div>
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            {app.options && app.options.length > 0 ? <p>Here are your options</p> : <p>No Options</p>}
+            <p>{app.options.length}</p>
+            <ol>
+                <li>Item One</li>
+                <li>Item Two</li>
+            </ol>
+            <button onClick={onRemoveAll}>Remove All</button>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name='option'/>
+                <button>Add Option</button>
+            </form>
+        </div>
+    );
+    ReactDOM.render(template, appRoot);
+}
+
+
+let count = 0;
+const addOne = () => {
+    count++
+    renderCounterApp()
+}
 
 
 
+const minusOne = () => {
+    count--
+    renderCounterApp()
+}
 
-var appRoot = document.querySelector('#app')
+const reset = () => {
+    count = 0;
+    renderCounterApp()
+}
 
-ReactDOM.render(template, appRoot)
+
+var appRoot = document.querySelector('#app');
+
+
+const renderCounterApp = () => {
+    const templateTwo = (
+        <div>
+            <h1>Count: {count}</h1>
+            <button  onClick={addOne}>+1</button>
+            <button onClick={minusOne}>-1</button>
+            <button onClick={reset}>Reset</button>
+        </div>
+    );
+    
+}
+
+renderCounterApp();
+render()
