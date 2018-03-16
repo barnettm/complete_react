@@ -45,11 +45,6 @@ const render = () => {
                     })
                 }
             </ol>
-            {/* {
-                numbers.map((number) => {
-                    return <p key={number}>Number: {number}</p>
-                })
-            } */}
             <form onSubmit={onFormSubmit}>
                 <input type="text" name='option'/>
                 <button>Add Option</button>
