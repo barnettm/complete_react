@@ -5,7 +5,7 @@ console.log('app.js is running');
 var app = {
     title: 'Indecision',
     subtitle: 'Just another awesome app',
-    options: ['One', 'Two']
+    options: []
 };
 
 var onFormSubmit = function onFormSubmit(e) {
@@ -22,6 +22,8 @@ var onRemoveAll = function onRemoveAll() {
     app.options = [];
     render();
 };
+
+var numbers = [55, 101, 1000];
 
 var render = function render() {
     var template = React.createElement(
@@ -54,35 +56,19 @@ var render = function render() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'Item One'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item Two'
-            )
+            app.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    option
+                );
+            })
         ),
         React.createElement(
             'button',
             { onClick: onRemoveAll },
             'Remove All'
         ),
-        [React.createElement(
-            'p',
-            { key: '1' },
-            'a'
-        ), React.createElement(
-            'p',
-            { key: '2' },
-            'b'
-        ), React.createElement(
-            'p',
-            { key: '3' },
-            'c'
-        )],
         React.createElement(
             'form',
             { onSubmit: onFormSubmit },
