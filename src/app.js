@@ -33,6 +33,11 @@ const render = () => {
                 <li>Item Two</li>
             </ol>
             <button onClick={onRemoveAll}>Remove All</button>
+            {
+                [<p key='1'>a</p>,
+                <p key="2">b</p>,
+                <p key="3">c</p>]
+            }
             <form onSubmit={onFormSubmit}>
                 <input type="text" name='option'/>
                 <button>Add Option</button>
