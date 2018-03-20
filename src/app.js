@@ -28,7 +28,7 @@ class Header extends React.Component {
 
 class Action extends React.Component {
     handlePick() {
-        
+        alert('handlPick')
     }
     render() {
         return (
@@ -66,10 +66,24 @@ class Option extends React.Component {
     }
 }
 
+
+
 class AddOption extends React.Component {
+    handleAddOption(e) {
+        e.preventDefault();
+        const option = e.target.elements.option.value.trim();
+        if(option) {
+            
+        }
+    }
     render() {
         return (
-            <p>AddOption Compoenent Here</p>
+            <div>
+                <form onSubmit={this.handleAddOption}>
+                    <input type="text" name='option'/>
+                    <button>Add Option</button>
+                </form>
+            </div>
         );
     }
 }

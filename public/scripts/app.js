@@ -81,7 +81,9 @@ var Action = function (_React$Component3) {
 
     _createClass(Action, [{
         key: 'handlePick',
-        value: function handlePick() {}
+        value: function handlePick() {
+            alert('handlPick');
+        }
     }, {
         key: 'render',
         value: function render() {
@@ -168,12 +170,28 @@ var AddOption = function (_React$Component6) {
     }
 
     _createClass(AddOption, [{
+        key: 'handleAddOption',
+        value: function handleAddOption(e) {
+            e.preventDefault();
+            var option = e.target.elements.option.value.trim();
+            if (option) {}
+        }
+    }, {
         key: 'render',
         value: function render() {
             return React.createElement(
-                'p',
+                'div',
                 null,
-                'AddOption Compoenent Here'
+                React.createElement(
+                    'form',
+                    { onSubmit: this.handleAddOption },
+                    React.createElement('input', { type: 'text', name: 'option' }),
+                    React.createElement(
+                        'button',
+                        null,
+                        'Add Option'
+                    )
+                )
             );
         }
     }]);
