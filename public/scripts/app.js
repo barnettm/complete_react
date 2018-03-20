@@ -68,8 +68,39 @@ var Student = function (_Person) {
     return Student;
 }(Person);
 
-var me = new Student("Matt Barnett", 35, 'Psychology');
-var other = new Student();
+var Traveler = function (_Person2) {
+    _inherits(Traveler, _Person2);
 
-console.log(me.getDescription());
-console.log(other.getDescription());
+    function Traveler(name, age, homeLocation) {
+        _classCallCheck(this, Traveler);
+
+        var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
+
+        _this2.homeLocation = homeLocation;
+        return _this2;
+    }
+
+    _createClass(Traveler, [{
+        key: 'hasHomeLocation',
+        value: function hasHomeLocation() {
+            return !!this.homeLocation;
+        }
+    }, {
+        key: 'getGreeting',
+        value: function getGreeting() {
+            var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
+            if (this.hasHomeLocation()) {
+                greeting += ' I am visiting from ' + this.homeLocation;
+            }
+            return greeting;
+        }
+    }]);
+
+    return Traveler;
+}(Person);
+
+var me = new Traveler("Matt Barnett", 35, 'Yorba Linda');
+var other = new Traveler();
+
+console.log(me.getGreeting());
+console.log(other.getGreeting());
