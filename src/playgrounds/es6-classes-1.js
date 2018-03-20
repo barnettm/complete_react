@@ -6,8 +6,8 @@ class Person {
     getGreeting() {
         return `Hi, I am ${this.name}!`
     }
-    getAge() {
-        return `${this.name} is ${this.age} old`
+    getDescription() {
+        return `${this.name} is ${this.age} years(s) old.`
     }
 }
 
@@ -16,10 +16,22 @@ class Student extends Person {
         super(name, age);
         this.major = major
     }
+
+    hasMajor() {
+        return !!this.major;
+    }
+    getDescription() {
+        let description = super.getDescription()
+        if(this.hasMajor()) {
+            description += ` Their major is ${this.major}`
+        }
+
+        return description
+    }
 }
 
 const me = new Student("Matt Barnett", 35, 'Psychology');
 const other = new Student()
 
-console.log(me)
-console.log(other)
+console.log(me.getDescription())
+console.log(other.getDescription())
