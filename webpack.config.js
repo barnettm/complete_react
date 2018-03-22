@@ -4,7 +4,7 @@ const path = require('path')
 module.exports = {
     entry: './src/app.js',
     output: {
-        path: '/Users/matt/Desktop/complete_react/indecision/public',
+        path: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     }
 }
