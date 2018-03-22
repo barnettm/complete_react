@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn run build
+  /usr/local/bin/node /usr/local/bin/yarn run build-babel
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -24,7 +24,7 @@ npm manifest:
     "scripts": {
       "serve": "live-server public/",
       "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-      "build" : "webpack"
+      "build" : "webpack --watch"
     },
     "dependencies": {
       "babel-cli": "6.24.1",
@@ -3572,9 +3572,9 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 255
+  Exit code: 1
   Command: sh
-  Arguments: -c webpack
+  Arguments: -c babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
   Directory: /Users/matt/Desktop/complete_react/indecision
   Output:
   
