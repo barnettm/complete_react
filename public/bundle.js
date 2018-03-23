@@ -69,7 +69,8 @@
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__person__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_js__ = __webpack_require__(2);
 // import {square, add} from './utils';
 
 
@@ -78,30 +79,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-console.log(`29 is adult? ${__WEBPACK_IMPORTED_MODULE_0__person__["b" /* isAdult */](19)}`)
-console.log(__WEBPACK_IMPORTED_MODULE_0__person__["b" /* isAdult */](9))
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__person__["a" /* canDrink */](24))
-console.log(__WEBPACK_IMPORTED_MODULE_0__person__["a" /* canDrink */](4))
+
+// console.log(subtract(100,30))
+// console.log(`29 is adult? ${isAdult(19)}`)
+// console.log(isAdult(9))
+
+// console.log(canDrink(24))
+// console.log(canDrink(4))
+
+console.log(__WEBPACK_IMPORTED_MODULE_1__utils_js__["a" /* default */](65))
+console.log(__WEBPACK_IMPORTED_MODULE_1__utils_js__["a" /* default */](64))
+
+
 
 
 
 
 
 /***/ }),
-/* 1 */,
-/* 2 */
+/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isAdult; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrink; });
+/* unused harmony export isAdult */
+/* unused harmony export canDrink */
 
 
 const isAdult = (age) => age >= 18 ? true : false;
 
 const canDrink = (age) => age >= 21 ? true : false; 
 
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+console.log('utils.js is running');
+
+const square = (x) => x * x;
+/* unused harmony export square */
+
+
+const add = (a, b) => a + b;
+/* unused harmony export add */
+
+
+/* harmony default export */ __webpack_exports__["a"] = ((age) => age >= 65);
+
+
+
+// export { square, add, subtract as default };
 
 
 /***/ })

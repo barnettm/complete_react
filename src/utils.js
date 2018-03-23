@@ -1,7 +1,11 @@
 console.log('utils.js is running');
 
-const square = (x) => x * x;
+export const square = (x) => x * x;
 
-const add = (a, b) => a + b;
+export const add = (a, b) => a + b;
 
-// export { square, add };
+export default (age) => age >= 65;
+
+
+
+// export { square, add, subtract as default };
